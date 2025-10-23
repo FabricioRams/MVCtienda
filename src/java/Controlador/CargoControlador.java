@@ -7,7 +7,6 @@ package Controlador;
 import Modelo.Cargo;
 import ModeloDao.CargoDao;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,91 +14,85 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author HP
- */
 @WebServlet(name = "CargoControlador", urlPatterns = {"/CargoControlador"})
 public class CargoControlador extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    
     String listar = "VistaCargo/listar.jsp";
     String add = "VistaCargo/agregar.jsp";
-    String edit =  "VistaCargo/editar.jsp";
+    String edit = "VistaCargo/editar.jsp";
     Cargo car = new Cargo();
     CargoDao dao = new CargoDao();
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet CargoControlador</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet CargoControlador at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String acceso = "";
         String action = request.getParameter("action");
-        if (action.equalsIgnoreCase("listar")){
+        
+        if (action != null) {
+            switch (action) {
+                case "listar":
+                    acceso = listar;
+                    break;
+                case "add":
+                    acceso = add;
+                    break;
+                case "agregar":
+                    int id = Integer.parseInt(request.getParameter("txtid"));
+                    String nom = request.getParameter("txtnombre");
+                    int est = Integer.parseInt(request.getParameter("txtestado"));
+                    car.setIdCargo(id);
+                    car.setNombre(nom);
+                    car.setEstado(est);
+                    dao.add(car);
+                    acceso = listar;
+                    break;
+                case "editar":
+                    int vidcar = Integer.parseInt(request.getParameter("vidcar"));
+                    request.setAttribute("vidcar", vidcar);
+                    acceso = edit;
+                    break;
+                case "actualizar":
+                    int id2 = Integer.parseInt(request.getParameter("txtid"));
+                    String nom2 = request.getParameter("txtnombre");
+                    int est2 = Integer.parseInt(request.getParameter("txtestado"));
+                    car.setIdCargo(id2);
+                    car.setNombre(nom2);
+                    car.setEstado(est2);
+                    dao.edit(car);
+                    acceso = listar;
+                    break;
+                case "eliminar":
+                    int vidcar2 = Integer.parseInt(request.getParameter("vidcar"));
+                    car.setIdCargo(vidcar2);
+                    dao.eliminar(car);
+                    acceso = listar;
+                    break;
+                default:
+                    acceso = listar;
+                    break;
+            }
+        } else {
             acceso = listar;
         }
-        
+
         RequestDispatcher vista = request.getRequestDispatcher(acceso);
         vista.forward(request, response);
-        //processRequest(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        doGet(request, response);
     }
 
-    /** 
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
+        return "Controlador de Cargo";
+    }
 }

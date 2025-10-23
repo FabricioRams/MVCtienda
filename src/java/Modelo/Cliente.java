@@ -10,8 +10,8 @@ package Modelo;
  */
 public class Cliente {
     private String dni;
-    private String nombre;
-    private String apellido;
+    private String nombres;
+    private String apellidos;
     private String direccion;
     private String email;
     private String clave;
@@ -19,10 +19,10 @@ public class Cliente {
     public Cliente() {
     }
 
-    public Cliente(String dni, String nombre, String apellido, String direccion, String email, String clave) {
+    public Cliente(String dni, String nombres, String apellidos, String direccion, String email, String clave) {
         this.dni = dni;
-        this.nombre = nombre;
-        this.apellido = apellido;
+        this.nombres = nombres;
+        this.apellidos = apellidos;
         this.direccion = direccion;
         this.email = email;
         this.clave = clave;
@@ -36,20 +36,20 @@ public class Cliente {
         this.dni = dni;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getNombres() {
+        return nombres;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombres(String nombres) {
+        this.nombres = nombres;
     }
 
-    public String getApellido() {
-        return apellido;
+    public String getApellidos() {
+        return apellidos;
     }
 
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
     }
 
     public String getDireccion() {
@@ -75,6 +75,4 @@ public class Cliente {
     public void setClave(String clave) {
         this.clave = clave;
     }
-    
-    
 }
