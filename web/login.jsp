@@ -1,9 +1,3 @@
-<%-- 
-    Document   : login
-    Created on : 19 oct 2025, 5:45:21 p.m.
-    Author     : Mi Equipo
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -20,10 +14,11 @@
             body {
                 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
                 background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                height: 100vh;
+                min-height: 100vh;
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                padding: 20px;
             }
             
             .login-container {
@@ -87,6 +82,7 @@
                 font-weight: 600;
                 cursor: pointer;
                 transition: transform 0.2s;
+                margin-bottom: 15px;
             }
             
             .btn-login:hover {
@@ -94,14 +90,75 @@
                 box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
             }
             
-            .error-message {
-                background: #fee;
-                color: #c33;
+            .error-message, .success-message, .warning-message {
                 padding: 12px;
                 border-radius: 5px;
                 margin-bottom: 20px;
                 text-align: center;
-                border: 1px solid #fcc;
+                border: 1px solid;
+            }
+            
+            .error-message {
+                background: #fee;
+                color: #c33;
+                border-color: #fcc;
+            }
+            
+            .success-message {
+                background: #d4edda;
+                color: #155724;
+                border-color: #c3e6cb;
+            }
+            
+            .warning-message {
+                background: #fff3cd;
+                color: #856404;
+                border-color: #ffeeba;
+            }
+            
+            .divider {
+                text-align: center;
+                margin: 20px 0;
+                position: relative;
+            }
+            
+            .divider::before {
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 0;
+                right: 0;
+                height: 1px;
+                background: #ddd;
+            }
+            
+            .divider span {
+                background: white;
+                padding: 0 10px;
+                position: relative;
+                color: #666;
+                font-size: 14px;
+            }
+            
+            .btn-registro {
+                width: 100%;
+                padding: 12px;
+                background: white;
+                color: #667eea;
+                border: 2px solid #667eea;
+                border-radius: 5px;
+                font-size: 16px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s;
+                text-decoration: none;
+                display: block;
+                text-align: center;
+            }
+            
+            .btn-registro:hover {
+                background: #667eea;
+                color: white;
             }
             
             .info-box {
@@ -141,22 +198,32 @@
             
             <% 
                 String error = (String) request.getAttribute("error");
+                String success = (String) request.getAttribute("success");
+                String tipo = (String) request.getAttribute("tipo");
+                
                 if (error != null) {
+                    if ("warning".equals(tipo)) {
             %>
-                <div class="error-message">
-                     <%= error %>
-                </div>
+                        <div class="warning-message">⚠️ <%= error %></div>
+            <%      } else { %>
+                        <div class="error-message">❌ <%= error %></div>
+            <%      }
+                }
+                
+                if (success != null) {
+            %>
+                    <div class="success-message">✅ <%= success %></div>
             <% } %>
             
             <form action="LoginControlador" method="POST">
                 <div class="form-group">
-                    <label for="txtusuario">Usuario</label>
+                    <label for="txtusuario">👤 Usuario</label>
                     <input type="text" id="txtusuario" name="txtusuario" 
                            placeholder="Ingresa tu usuario" required autofocus>
                 </div>
                 
                 <div class="form-group">
-                    <label for="txtclave">Contraseña</label>
+                    <label for="txtclave">🔒 Contraseña</label>
                     <input type="password" id="txtclave" name="txtclave" 
                            placeholder="Ingresa tu contraseña" required>
                 </div>
@@ -165,8 +232,14 @@
                 <button type="submit" class="btn-login">Iniciar Sesión</button>
             </form>
             
+            <div class="divider">
+                <span>¿No tienes cuenta?</span>
+            </div>
+            
+            <a href="registro.jsp" class="btn-registro">Crear cuenta nueva</a>
+            
             <div class="info-box">
-                <h3>Usuarios de Prueba:</h3>
+                <h3>ℹ️ Usuarios de Prueba:</h3>
                 <p><strong>Administrador:</strong> admin / 123456</p>
                 <p><strong>Gerente:</strong> gerente1 / 123456</p>
                 <p><strong>Vendedor:</strong> vendedor1 / 123456</p>

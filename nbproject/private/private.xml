@@ -3,16 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/MiProyectoJava/MvcTienda/web/index.jsp</file>
-            <file>file:/C:/MiProyectoJava/MvcTienda/web/VistaCargo/listar.jsp</file>
-            <file>file:/C:/MiProyectoJava/MvcTienda/src/java/Modelo/Cliente.java</file>
-            <file>file:/C:/MiProyectoJava/MvcTienda/web/VistaCliente/listar.jsp</file>
-            <file>file:/C:/MiProyectoJava/MvcTienda/web/VistaUsuario/listar.jsp</file>
-            <file>file:/C:/MiProyectoJava/MvcTienda/web/login.jsp</file>
-            <file>file:/C:/MiProyectoJava/MvcTienda/src/java/Util/ExcelUtil.java</file>
-            <file>file:/C:/MiProyectoJava/MvcTienda/src/java/Controlador/ClienteControlador.java</file>
-            <file>file:/C:/MiProyectoJava/MvcTienda/src/java/Util/PDFUtil.java</file>
-            <file>file:/C:/MiProyectoJava/MvcTienda/src/java/Controlador/UsuarioControlador.java</file>
+            <file>file:/C:/Users/HP/Desktop/MvcTienda/MvcTienda/src/java/Util/ExcelUtil.java</file>
+            <file>file:/C:/Users/HP/Desktop/MvcTienda/MvcTienda/nbproject/build-impl.xml</file>
+            <file>file:/C:/Users/HP/Desktop/MvcTienda/MvcTienda/src/java/Modelo/Usuario.java</file>
+            <file>file:/C:/Users/HP/Desktop/MvcTienda/MvcTienda/src/java/Util/EmailService.java</file>
+            <file>file:/C:/Users/HP/Desktop/MvcTienda/MvcTienda/src/java/ModeloDao/UsuarioDAO.java</file>
+            <file>file:/C:/Users/HP/Desktop/MvcTienda/MvcTienda/src/java/Controlador/LoginControlador.java</file>
+            <file>file:/C:/Users/HP/Desktop/MvcTienda/MvcTienda/web/login.jsp</file>
+            <file>file:/C:/Users/HP/Desktop/MvcTienda/MvcTienda/web/registro.jsp</file>
         </group>
     </open-files>
 </project-private>

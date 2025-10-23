@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Modelo;
 
 public class Usuario {
@@ -14,12 +10,14 @@ public class Usuario {
     private int idCargo;
     private String cargoNombre;
     private int estado;
+    private boolean emailVerificado;
+    private String tokenVerificacion;
 
     public Usuario() {
     }
 
     public Usuario(int idUsuario, String usuario, String clave, String nombre, String apellido, 
-                   String email, int idCargo, String cargoNombre, int estado) {
+                   String email, int idCargo, String cargoNombre, int estado, boolean emailVerificado, String tokenVerificacion) {
         this.idUsuario = idUsuario;
         this.usuario = usuario;
         this.clave = clave;
@@ -29,8 +27,11 @@ public class Usuario {
         this.idCargo = idCargo;
         this.cargoNombre = cargoNombre;
         this.estado = estado;
+        this.emailVerificado = emailVerificado;
+        this.tokenVerificacion = tokenVerificacion;
     }
 
+    // Getters y Setters
     public int getIdUsuario() {
         return idUsuario;
     }
@@ -101,5 +102,21 @@ public class Usuario {
 
     public void setEstado(int estado) {
         this.estado = estado;
+    }
+
+    public boolean isEmailVerificado() {
+        return emailVerificado;
+    }
+
+    public void setEmailVerificado(boolean emailVerificado) {
+        this.emailVerificado = emailVerificado;
+    }
+
+    public String getTokenVerificacion() {
+        return tokenVerificacion;
+    }
+
+    public void setTokenVerificacion(String tokenVerificacion) {
+        this.tokenVerificacion = tokenVerificacion;
     }
 }

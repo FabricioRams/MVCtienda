@@ -251,6 +251,16 @@ FROM tbusuario u
 INNER JOIN tbcargo c ON u.idcargo = c.idcargo 
 ;
 
+
+
+ALTER TABLE tbusuario 
+ADD COLUMN email_verificado TINYINT(1) DEFAULT 0,
+ADD COLUMN token_verificacion VARCHAR(100) NULL,
+ADD COLUMN fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
+
+-- Verificar que los usuarios existentes tengan email verificado
+UPDATE tbusuario SET email_verificado = 1 WHERE email IS NOT NULL;
+
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
