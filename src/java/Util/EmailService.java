@@ -9,8 +9,8 @@ public class EmailService {
     // Configuración del servidor de correo (Gmail como ejemplo)
     private static final String SMTP_HOST = "smtp.gmail.com";
     private static final String SMTP_PORT = "587";
-    private static final String EMAIL_FROM = ""; //  email
-    private static final String EMAIL_PASSWORD = ""; // Contraseña
+    private static final String EMAIL_FROM = "rojomelodespojo@gmail.com"; //  email
+    private static final String EMAIL_PASSWORD = "qmfj akpl ygzd vxwd"; // Contraseña
     
     /**
      * Envía un correo de verificación al usuario
