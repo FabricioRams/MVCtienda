@@ -1,9 +1,3 @@
-<%-- 
-    Document   : confirmacion
-    Created on : 19 oct 2025, 6:19:51 p.m.
-    Author     : Mi Equipo
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="Modelo.ItemCarrito"%>
 <%@page import="java.util.*"%>
@@ -79,6 +73,20 @@
         
         .confirmacion-contenido {
             padding: 30px;
+        }
+        
+        .mensaje-pdf {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        
+        .mensaje-pdf p {
+            color: #155724;
+            margin: 0;
+            line-height: 1.6;
         }
         
         .info-pedido {
@@ -213,6 +221,8 @@
     <%
         List<ItemCarrito> ultimaCompra = (List<ItemCarrito>) session.getAttribute("ultimaCompra");
         String metodoPago = (String) session.getAttribute("metodoPagoUsado");
+        Integer numeroPedidoObj = (Integer) session.getAttribute("numeroPedidoGenerado");
+        String mensajePDF = (String) session.getAttribute("mensajePDF");
         
         DecimalFormat df = new DecimalFormat("#,##0.00");
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
@@ -228,9 +238,7 @@
             }
         }
         
-        // Generar número de pedido aleatorio
-        Random random = new Random();
-        int numeroPedido = 10000 + random.nextInt(90000);
+        int numeroPedido = numeroPedidoObj != null ? numeroPedidoObj : 0;
     %>
     
     <div class="confirmacion-contenedor">
@@ -241,6 +249,17 @@
         </div>
         
         <div class="confirmacion-contenido">
+            <% if (mensajePDF != null) { %>
+            <div class="mensaje-pdf">
+                <p>
+                    <strong>📧 ¡Comprobante Enviado!</strong><br>
+                    <%= mensajePDF %> Revisa tu bandeja de entrada o spam.
+                </p>
+            </div>
+            <% 
+                session.removeAttribute("mensajePDF");
+            } %>
+            
             <div class="info-pedido">
                 <div class="info-linea">
                     <span>Número de Pedido:</span>
@@ -261,7 +280,7 @@
             </div>
             
             <div class="mensaje-entrega">
-                <p>Tu pedido será enviado en las próximas 24-48 horas. Recibirás un correo de confirmación con los detalles del envío.</p>
+                <p>📦 Tu pedido será enviado en las próximas 24-48 horas. Recibirás un correo de confirmación con los detalles del envío.</p>
             </div>
             
             <div class="productos-lista">
@@ -303,6 +322,7 @@
         // Limpiar las variables de sesión después de mostrar
         session.removeAttribute("ultimaCompra");
         session.removeAttribute("metodoPagoUsado");
+        session.removeAttribute("numeroPedidoGenerado");
     %>
 </body>
 </html>
